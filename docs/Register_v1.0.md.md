@@ -1,7 +1,6 @@
 # **Configuration Item (CI) Register**
 
 **Project:** To-Do List Web Application Mini Project  
-**Date:** December 23, 2025
 
 **Prepared by:** Melat Mekonnen
 
