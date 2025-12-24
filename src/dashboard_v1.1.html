@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>To-Do List Dashboard</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <h2>My Tasks</h2>
+
+    <!-- Task Input Section with Category Selection (CR-003) -->
+    <div class="task-input-container">
+      <input type="text" id="taskInput" placeholder="New Task" />
+      <select id="categorySelect">
+        <option value="Personal">Personal</option>
+        <option value="Work">Work</option>
+        <option value="High">High Priority</option>
+        <option value="Medium">Medium Priority</option>
+        <option value="Low">Low Priority</option>
+      </select>
+      <button onclick="addTask()">Add Task</button>
+    </div>
+
+    <!-- Category Filter Controls (CR-003) -->
+    <div class="filter-container">
+      <button class="filter-btn active" onclick='filterTasks("all")'>
+        All Tasks
+      </button>
+      <button class="filter-btn" onclick='filterTasks("Personal")'>
+        Personal
+      </button>
+      <button class="filter-btn" onclick='filterTasks("Work")'>Work</button>
+      <button class="filter-btn" onclick='filterTasks("High")'>
+        High Priority
+      </button>
+      <button class="filter-btn" onclick='filterTasks("Medium")'>
+        Medium Priority
+      </button>
+      <button class="filter-btn" onclick='filterTasks("Low")'>
+        Low Priority
+      </button>
+    </div>
+
+    <!-- Task List -->
+    <ul id="taskList"></ul>
+
+    <script src="script.js"></script>
+  </body>
+</html>
