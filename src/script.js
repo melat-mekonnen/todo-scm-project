@@ -1,12 +1,63 @@
+// Password strength validation function (CR-001)
+function validatePassword(password) {
+  const minLength = 8;
+  const hasUpperCase = /[A-Z]/.test(password);
+  const hasLowerCase = /[a-z]/.test(password);
+  const hasNumbers = /\d/.test(password);
+
+  if (password.length < minLength) {
+    return { isValid: false, message: "Password must be at least 8 characters long" };
+  }
+  if (!hasUpperCase) {
+    return { isValid: false, message: "Password must contain at least one uppercase letter" };
+  }
+  if (!hasLowerCase) {
+    return { isValid: false, message: "Password must contain at least one lowercase letter" };
+  }
+  if (!hasNumbers) {
+    return { isValid: false, message: "Password must contain at least one number" };
+  }
+
+  return { isValid: true, message: "Password is strong" };
+}
+
+// Display password validation feedback (CR-001)
+function updatePasswordValidation() {
+  const password = document.getElementById("password").value;
+  const validationDiv = document.getElementById("password-validation");
+
+  if (password.length === 0) {
+    validationDiv.textContent = "";
+    validationDiv.className = "password-validation";
+    return;
+  }
+
+  const validation = validatePassword(password);
+  validationDiv.textContent = validation.message;
+
+  if (validation.isValid) {
+    validationDiv.className = "password-validation valid";
+  } else {
+    validationDiv.className = "password-validation invalid";
+  }
+}
+
 // Password reset function (CR-001)
 function showPasswordReset() {
   alert("Password Reset:\n\nFor security purposes, please contact the system administrator at admin@todoapp.edu to reset your password.\n\nDefault credentials: admin / 123");
 }
 
-// Login function
+// Enhanced login function with password validation (CR-001)
 function login() {
   const username = document.getElementById("username").value;
   const password = document.getElementById("password").value;
+
+  // Validate password strength before checking credentials (CR-001)
+  const passwordValidation = validatePassword(password);
+  if (!passwordValidation.isValid) {
+    alert(passwordValidation.message);
+    return;
+  }
 
   if (username === "admin" && password === "123") {
     window.location.href = "dashboard.html";
